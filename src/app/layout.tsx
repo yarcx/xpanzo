@@ -1,11 +1,12 @@
 "use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "@/app/common/theme";
-import Providers from "./providers";
+import Providers from "./components/providers";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Box } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Box as='div' pos='relative' h='100vh' overflowY={"hidden"}>
+            <Navbar />
+            {children}
+            <Footer />
+          </Box>
+        </Providers>
       </body>
     </html>
   );
