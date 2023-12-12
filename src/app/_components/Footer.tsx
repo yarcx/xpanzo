@@ -1,7 +1,7 @@
-"use client";
 import { Container, HStack, Text } from "@chakra-ui/react";
-import BigLogo from "./BigLogo";
 import Link from "next/link";
+
+import BigLogo from "./BigLogo";
 
 const Footer = () => {
   return (
@@ -34,6 +34,7 @@ const Footer = () => {
                 color='BLACK'
                 as='span'
                 // display={["none", "none", "inline-block", "inline-block"]}
+                fontSize={["small", "small", "medium", "medium"]}
                 fontWeight={"bold"}
               >
                 <Link href={"/"}>{text}</Link>

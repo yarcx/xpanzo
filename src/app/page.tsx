@@ -21,9 +21,9 @@ export default function Home() {
             {Home_Tab_Links.map((link, index) => {
               return (
                 <Tab
-                  minW={"160px"}
+                  minW={["", "", "120px", "140px"]}
                   key={index}
-                  px='0rem'
+                  px='1rem'
                   _selected={{
                     color: "brand.900",
                   }}
@@ -36,16 +36,7 @@ export default function Home() {
               );
             })}
           </TabList>
-          <TabIndicator mt='-1.5px' height='2px' bg='blue.500' borderRadius='1px' />
-          <TabPanels>
-            {Home_Tab_Links.map((tab, index) => {
-              return (
-                <TabPanel key={index}>
-                  <p>{tab}</p>
-                </TabPanel>
-              );
-            })}
-          </TabPanels>
+          <TabIndicator mt='-1.5px' height='2px' bg='brand.900' borderRadius='1px' />
         </Tabs>
       </Box>
     </Box>
