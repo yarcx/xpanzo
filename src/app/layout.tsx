@@ -1,11 +1,13 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Box } from "@chakra-ui/react";
 
 import "./globals.css";
-import Providers from "./components/providers";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { Box } from "@chakra-ui/react";
+import Providers from "./utils/providers";
+import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 

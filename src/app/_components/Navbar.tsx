@@ -1,19 +1,30 @@
-import { Box, Button, Container, HStack, Text, VStack, useDisclosure } from "@chakra-ui/react";
+"use client";
+import { Button, Container, HStack, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faPencil, faUser } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
 import Link from "next/link";
-import { Nav_Links } from "../utils/data";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 import MobileSidebar from "./MobileSidebar";
-import Smalllogo from "./Smalllogo";
+import { Nav_Links } from "../utils/constants";
+import SmallLogo from "./SmallLogo";
 
 const Navbar = () => {
   const pathname = usePathname();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { push } = useRouter();
+
+  const gotoRoute = (route?: string) => {
+    if (route) {
+      push(route);
+    }
+    return onClose();
+  };
+
   return (
-    <Container maxW='100%' bg='brand.900' as='nav' h='75px' display='flex' alignItems={"center"}>
+    <Container maxW='100%' bg='brand.900' as='nav' h='70px' display='flex' alignItems={"center"}>
       <HStack justify={"space-between"} w='100%' alignItems={"center"}>
         <HStack gap='4'>
           <Button
@@ -37,10 +48,13 @@ const Navbar = () => {
                 key={index}
                 color='white'
                 as='span'
+                onClick={() => gotoRoute(link)}
                 display={["none", "none", "inline-block", "inline-block"]}
                 fontWeight={activePath ? "bold" : "semibold"}
+                fontSize={"small"}
+                cursor='pointer'
               >
-                <Link href={link}>{text.toUpperCase()}</Link>
+                {text.toUpperCase()}
               </Text>
             );
           })}
@@ -48,7 +62,7 @@ const Navbar = () => {
 
         {pathname === Nav_Links[1].link && (
           <Link href='/'>
-            <Smalllogo />
+            <SmallLogo />
           </Link>
         )}
 
@@ -72,7 +86,7 @@ const Navbar = () => {
             fontWeight={"normal"}
             px='0'
             transition={".4 all linear"}
-            fontSize={"medium"}
+            fontSize={"small"}
           >
             LOGIN
           </Button>
@@ -97,13 +111,14 @@ const Navbar = () => {
             fontWeight={"normal"}
             pr='0'
             transition={".4 all linear"}
+            fontSize={"small"}
           >
             REGISTRATION
           </Button>
         </HStack>
       </HStack>
 
-      <MobileSidebar isOpen={isOpen} onClose={onClose} />
+      <MobileSidebar isOpen={isOpen} onClose={onClose} gotoRoute={gotoRoute} />
     </Container>
   );
 };

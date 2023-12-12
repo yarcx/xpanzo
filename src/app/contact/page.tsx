@@ -2,9 +2,10 @@
 import { Box, Container, Text, VStack } from "@chakra-ui/react";
 import { IconDefinition, faEnvelope, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 
-const ContactHeaders = ({ header, icon }: { header: string; icon: IconDefinition }) => {
+import { IContactHeaders } from "../utils/types";
+
+const ContactHeaders = ({ header, icon }: IContactHeaders) => {
   return (
     <Text as='h5' fontWeight={"bold"} color='brand.900' mb='2rem'>
       <FontAwesomeIcon icon={icon} />{" "}
@@ -15,7 +16,7 @@ const ContactHeaders = ({ header, icon }: { header: string; icon: IconDefinition
   );
 };
 
-const Page = () => {
+export default function Contact() {
   return (
     <Box
       minH='50vh'
@@ -57,6 +58,4 @@ const Page = () => {
       </Container>
     </Box>
   );
-};
-
-export default Page;
+}

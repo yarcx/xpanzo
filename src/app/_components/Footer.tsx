@@ -1,10 +1,20 @@
-import { Box, Button, Container, HStack, Text } from "@chakra-ui/react";
+"use client";
+import { Container, HStack, Text } from "@chakra-ui/react";
 import BigLogo from "./BigLogo";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <Container as='footer' display='flex' maxH='300px' h='100%' maxW='100%' bg='brand.700'>
+    <Container
+      as='footer'
+      pos={"absolute"}
+      bottom={0}
+      display='flex'
+      maxH='300px'
+      h='100%'
+      maxW='100%'
+      bg='brand.700'
+    >
       <HStack
         justify={"center"}
         bg='brand.700'

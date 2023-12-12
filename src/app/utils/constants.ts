@@ -13,3 +13,5 @@ export const Nav_Links: INav_bar = [
     link: "/contact",
   },
 ];
+
+export const Home_Tab_Links = ["All", "Companies", "Phone"];

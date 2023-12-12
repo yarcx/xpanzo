@@ -1,31 +1,28 @@
+"use client";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
   Divider,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import { Nav_Links } from "../utils/data";
-import { usePathname } from "next/navigation";
+import { Nav_Links } from "../utils/constants";
+import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faUser } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 
-interface IMobileSidebar {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { IMobileSidebar } from "../utils/types";
 
-const MobileSidebar: FC<IMobileSidebar> = ({ isOpen, onClose }) => {
+const MobileSidebar: FC<IMobileSidebar> = ({ isOpen, onClose, gotoRoute }) => {
   const pathname = usePathname();
+  const { push } = useRouter();
+
   return (
     <Drawer isOpen={isOpen} placement='left' onClose={onClose}>
       <DrawerOverlay />
@@ -39,19 +36,19 @@ const MobileSidebar: FC<IMobileSidebar> = ({ isOpen, onClose }) => {
             const activePath = pathname === link;
             return (
               <Text
-                onClick={onClose}
+                onClick={() => gotoRoute(link)}
                 key={text}
-                color=''
+                cursor='pointer'
                 as='p'
                 fontSize={"small"}
                 fontWeight={activePath ? "bold" : "normal"}
               >
-                <Link href={link}>{text.toUpperCase()}</Link>
+                {text.toUpperCase()}
               </Text>
             );
           })}
           <Button
-            onClick={onClose}
+            onClick={() => gotoRoute()}
             bg='none'
             _hover={{ bg: "none", opacity: "0.7" }}
             leftIcon={
@@ -75,7 +72,7 @@ const MobileSidebar: FC<IMobileSidebar> = ({ isOpen, onClose }) => {
             LOGIN
           </Button>
           <Button
-            onClick={onClose}
+            onClick={() => gotoRoute()}
             bg='none'
             h='max-content'
             _hover={{ bg: "none", opacity: "0.7" }}
